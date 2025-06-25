@@ -5,12 +5,14 @@ import { IWeatherData } from '../../models/interfaces/iweather-data';
 import { Subject, takeUntil } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { WeatherCard } from '../weather-card/weather-card';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-weather-home',
-  imports: [FormsModule, FontAwesomeModule],
+  imports: [FormsModule, FontAwesomeModule, WeatherCard, CommonModule],
   templateUrl: './weather-home.html',
-  styleUrl: './weather-home.scss',
+  standalone: true,
 })
 export class WeatherHome implements OnInit, OnDestroy {
   constructor(private weatherService: WeatherService) {}
@@ -44,13 +46,12 @@ export class WeatherHome implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    this.getWeatherDatas(this.initialCityName);
+    if (this.initialCityName.length) this.getWeatherDatas(this.initialCityName);
     this.initialCityName = ''; // Clear input after submission
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-    this.weatherDatas = {} as IWeatherData; // Clear weather data on destroy
   }
 }

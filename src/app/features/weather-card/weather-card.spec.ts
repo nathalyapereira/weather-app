@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WeatherCard } from './weather-card';
+import { CommonModule } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 describe('WeatherCard', () => {
   let component: WeatherCard;
@@ -8,9 +10,8 @@ describe('WeatherCard', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WeatherCard]
-    })
-    .compileComponents();
+      imports: [WeatherCard, CommonModule, FontAwesomeModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(WeatherCard);
     component = fixture.componentInstance;

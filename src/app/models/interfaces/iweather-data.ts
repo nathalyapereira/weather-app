@@ -11,7 +11,7 @@ export interface IWeatherData {
   }[];
   base: string;
   main: {
-    tem: number;
+    temp: number;
     feels_like: number;
     temp_min: number;
     temp_max: number;
